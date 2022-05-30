@@ -1,5 +1,9 @@
+import time
 import os
 import shutil
+
+from filePicker import pickFile
+from progressBar import progressBar
 
 
 def deleteFromFlutter(path: str):
@@ -24,8 +28,19 @@ def checkIfFlutterProject(path: str):
     return 1
 
 
-l2 = [i[0] for i in os.walk(os.path.expanduser('~') + "/")]
+os.system('clear')
+# l2 = [i[0] for i in os.walk(os.path.expanduser('~') + "/")]
+print("Please select the folder or directory")
+pickedFileDir = pickFile()
+time.sleep(0.5)
+print("Please wait while the data is being fetched...")
+l2 = [i[0] for i in os.walk(pickedFileDir + "/")]
+print("Data fetched successfully!")
+time.sleep(1)
+print("Now filtering the data...")
 l2 = list(filter(checkIfFlutterProject, l2))
-
-for i in l2:
-    deleteFromFlutter(i)
+print("Hold tight while we clear the useless data ;)")
+for item in progressBar(l2, prefix='Progress:', suffix='Complete', length=50):
+    deleteFromFlutter(item)
+    time.sleep(0.1)
+print("Successfully cleaned all the flutter's junk!")

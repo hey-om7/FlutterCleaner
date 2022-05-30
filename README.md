@@ -13,3 +13,6 @@ It deletes the:
 * "build" Folder
 * ".gradle"
 * ".dart_tools"
+
+Required Packages:
+* tkinter - `pip3 install tk`
