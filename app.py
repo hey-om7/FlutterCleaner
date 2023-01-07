@@ -10,11 +10,16 @@ def deleteFromFlutter(path: str):
     l1 = [i.name for i in os.scandir(path)]
     if "build" in l1:
         shutil.rmtree(path + "/build")
+    # for android insights deletion
     l2 = [i.name for i in os.scandir(path+"/android")]
     if ".gradle" in l2:
         shutil.rmtree(path + "/android/.gradle")
     if ".dart_tool" in l1:
         shutil.rmtree(path + "/.dart_tool")
+    # for ios insights deletion
+    l3 = [i.name for i in os.scandir(path+"/ios")]
+    if "Pods" in l3:
+        shutil.rmtree(path + "/ios/Pods")
 
 
 def checkIfFlutterProject(path: str):
